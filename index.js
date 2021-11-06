@@ -1,12 +1,16 @@
+import { SHAPE } from "./consts/shape.js";
+
 var canvas, ctx, flag = false,
 prevX = 0,
 curX = 0,
 prevY = 0,
 curY = 0,
 dot_flag = false;
-
+var shape = SHAPE.LINE;
 var color = "black";
-lineWidth = 2;
+var lineWidth = 2;
+var width;
+var height;
 
     function paintColor(colorButton) {
         console.log(color);
@@ -15,10 +19,8 @@ lineWidth = 2;
         console.log(color);
         if (color == "white") lineWidth = 14;
         else lineWidth = 2;
-    
     }
     
-
     function connectColorButtonToListener() {
         const colors = document.getElementsByClassName("color");
         console.log(colors);
@@ -28,14 +30,14 @@ lineWidth = 2;
         }
     }
 
-    
+
 
     function init() {
         canvas = document.getElementById('can');
 
         ctx = canvas.getContext("2d");
-        w = canvas.width;
-        h = canvas.height;
+        width = canvas.width;
+        height = canvas.height;
     
         canvas.addEventListener("mousemove", function (e) {
             findxy('move', e)
@@ -109,3 +111,4 @@ lineWidth = 2;
         }
     }
 
+init();
