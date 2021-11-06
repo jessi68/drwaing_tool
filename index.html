@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
+        <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" class="color"></div>
+        <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" class="color"></div>
+        <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" class="color"></div>
+        <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" class="color"></div>
+        <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" class="color"></div>
+        <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" class="color"></div>
+        <div style="position:absolute;top:20%;left:43%;">Eraser</div>
+        <button id="line">선</button>
+        <button id="circle">원</button>
+        <button  id="rectangle">직사각형</button>
+        <button id="polygon">다각형</button>
+        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+        <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
+        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
+    </body>
+    <script src="index.js"></script>
+    <script>
+        init()
+    </script>
+    </html>
