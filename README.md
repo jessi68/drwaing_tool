@@ -6,3 +6,5 @@
 - [x] 컬러 선택
  - [] undo, redo
  - [] 복구하는 거 나중에 구현
+
+ - 색깔은 전역변수로 두거나 shape 의 static varialbe 로 두기

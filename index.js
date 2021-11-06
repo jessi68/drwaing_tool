@@ -1,6 +1,6 @@
 import { SHAPE } from "./consts/shape.js";
-import DrawingCircle from "./drawShape/circle..js";
-import DrawingLine from "./drawShape/line.js";
+import DrawingCircle from "./drawShapeTool/circle..js";
+import DrawingLine from "./drawShapeTool/line.js";
 
 var canvas, ctx, flag = false,
 prevX = 0,
