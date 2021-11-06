@@ -1,4 +1,5 @@
 import { SHAPE } from "./consts/shape.js";
+import DrawingLine from "./drawShape/line.js";
 
 var canvas, ctx, flag = false,
 prevX = 0,
@@ -11,12 +12,10 @@ var color = "black";
 var lineWidth = 2;
 var width;
 var height;
+var line;
 
     function paintColor(colorButton) {
-        console.log(color);
-        console.log(colorButton);
         color = colorButton.id;
-        console.log(color);
         if (color == "white") lineWidth = 14;
         else lineWidth = 2;
     }
@@ -30,8 +29,6 @@ var height;
         }
     }
 
-
-
     function init() {
         canvas = document.getElementById('can');
 
@@ -39,36 +36,18 @@ var height;
         width = canvas.width;
         height = canvas.height;
     
-        canvas.addEventListener("mousemove", function (e) {
-            findxy('move', e)
-        }, false);
-        canvas.addEventListener("mousedown", function (e) {
-            findxy('down', e)
-        }, false);
-        canvas.addEventListener("mouseup", function (e) {
-            findxy('up', e)
-        }, false);
-        canvas.addEventListener("mouseout", function (e) {
-            findxy('out', e)
-        }, false);
 
         connectColorButtonToListener();
+        line = new DrawingLine(canvas, ctx);
+        const lineButton = document.getElementById("line");
+        lineButton.addEventListener("click", () => line.init());
     }
     
-    function draw() {
-        ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(curX, curY);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = lineWidth;
-        ctx.stroke();
-        ctx.closePath();
-    }
-    
+       
     function erase() {
         const wantToClear = confirm("Want to clear");
         if (wantToClear) {
-            ctx.clearRect(0, 0, w, h);
+            ctx.clearRect(0, 0, width, height);
             document.getElementById("canvasimg").style.display = "none";
         }
     }
@@ -80,8 +59,8 @@ var height;
         document.getElementById("canvasimg").style.display = "inline";
     }
     
-    function findxy(res, e) {
-        if (res == 'down') {
+    function findxy(direction, e) {
+        if (direction == 'down') {
             prevX = curX;
             prevY = curY;
             curX = e.clientX - canvas.offsetLeft;
@@ -90,17 +69,17 @@ var height;
             flag = true;
             dot_flag = true;
             if (dot_flag) {
-                ctx.beginPath();
-                ctx.fillStyle = color;
-                ctx.fillRect(curX, curY, 2, 2);
-                ctx.closePath();
-                dot_flag = false;
+                // ctx.beginPath();
+                // ctx.fillStyle = color;
+                // ctx.fillRect(curX, curY, 2, 2);
+                // ctx.closePath();
+                // dot_flag = false;
             }
         }
-        if (res == 'up' || res == "out") {
+        if (direction == 'up' || direction == "out") {
             flag = false;
         }
-        if (res == 'move') {
+        if (direction == 'move') {
             if (flag) {
                 prevX = curX;
                 prevY = curY;
@@ -109,6 +88,17 @@ var height;
                 draw();
             }
         }
+    }
+
+    function draw() {
+        console.log(ctx)
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(curX, curY);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        ctx.closePath();
     }
 
 init();
