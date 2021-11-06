@@ -1,3 +1,5 @@
+import clearLineSquared, { clearLineRounded } from "../util/clear.js";
+
 export default class DrawingLine {
  
     constructor(canvas, context) {
@@ -15,8 +17,20 @@ export default class DrawingLine {
      draw() {
         const ctx = this.context;
         ctx.beginPath();
-        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if(this.lineCreated) {
+        const xDiff = this.curX - this.startX;
+        const yDiff = this.curY - this.startY;
+
+        const dist = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+        console.log(this.startX, this.startY);
+        console.log(this.curX, this.curY);
+        console.log(this.prevX, this.prevY);
+        // clearLineRounded(this.context, this.prevX, this.prevY, this.curX, this.curY);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        //clearLineSquared(this.context, this.startX, this.startY, this.curX, this.curY);
         document.getElementById("canvasimg").style.display = "none";
+        }
+        
         ctx.moveTo(this.startX, this.startY);
         ctx.lineTo(this.curX, this.curY);
         // ctx.strokeStyle = color;
@@ -26,24 +40,32 @@ export default class DrawingLine {
     }
 
     mouseMove(e) {
-        if(this.isMoving) {
-            console.log("mouse move")
-            // this.startX = this.curX;
-            // this.startY = this.curY;
+        if(this.isMoving &&  !this.lineCreated)  {
+            this.startX = this.curX;
+            this.startY = this.curY;
             this.curX = e.clientX - this.canvas.offsetLeft;
             this.curY = e.clientY - this.canvas.offsetTop;
             this.draw();
+            this.prevX = this.curX;
+            this.prevY = this.curY;
             this.lineCreated = true;
         }
+        if(this.isMoving) {
+            this.curX = e.clientX - this.canvas.offsetLeft;
+            this.curY = e.clientY - this.canvas.offsetTop;
+            this.draw();
+            this.prevX = this.curX;
+            this.prevY = this.curY;
+        } 
     }
 
     stop(e) {
+        this.lineCreated = false;
        this.isMoving = false;
+       console.log("stop");
     }
 
      init() {
-         console.log('ddd');
-         console.log(this);
         const canvas = this.canvas;
         canvas.addEventListener("mousemove", function (e) {
             this.mouseMove(e);
@@ -60,7 +82,6 @@ export default class DrawingLine {
     }
     
      mousedown(e) {
-         console.log("mouse down")
        this.startX = this.curX;
        this.startY = this.curY;
        this.curX = e.clientX - this.canvas.offsetLeft;
