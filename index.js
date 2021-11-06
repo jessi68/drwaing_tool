@@ -1,4 +1,5 @@
 import { SHAPE } from "./consts/shape.js";
+import DrawingCircle from "./drawShape/circle..js";
 import DrawingLine from "./drawShape/line.js";
 
 var canvas, ctx, flag = false,
@@ -13,6 +14,7 @@ var lineWidth = 2;
 var width;
 var height;
 var line;
+var circle;
 
     function paintColor(colorButton) {
         color = colorButton.id;
@@ -39,8 +41,11 @@ var line;
 
         connectColorButtonToListener();
         line = new DrawingLine(canvas, ctx);
+        circle = new DrawingCircle(canvas, ctx);
         const lineButton = document.getElementById("line");
+        const circleButton = document.getElementById("circle");
         lineButton.addEventListener("click", () => line.init());
+        circleButton.addEventListener("click", () => circle.init());
     }
     
        

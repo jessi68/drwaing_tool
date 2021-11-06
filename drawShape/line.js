@@ -12,6 +12,7 @@ export default class DrawingLine {
         this.curY = 0;
         this.context = context;
         this.color = "black"
+        this.history = [];
     }
 
      draw() {
@@ -63,6 +64,7 @@ export default class DrawingLine {
         this.lineCreated = false;
        this.isMoving = false;
        console.log("stop");
+       this.history.push({'curX': this.curX, 'curY': this.curY, 'startX': this.startX, 'startY': this.startY});
     }
 
      init() {
@@ -87,6 +89,7 @@ export default class DrawingLine {
        this.curX = e.clientX - this.canvas.offsetLeft;
        this.curY = e.clientY - this.canvas.offsetTop;
        this.isMoving = true;
+
     }
     
      
