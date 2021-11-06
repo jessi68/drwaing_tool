@@ -13,6 +13,11 @@ export default class DrawingShape {
         this.history = [];
     }
 
+    eraseAll() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        document.getElementById("canvasimg").style.display = "none";
+    }
+
      draw() {
         
     }

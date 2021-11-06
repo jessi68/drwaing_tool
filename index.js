@@ -1,6 +1,7 @@
 import { SHAPE } from "./consts/shape.js";
-import DrawingCircle from "./drawShapeTool/circle..js";
+import DrawingCircle from "./drawShapeTool/circle.js";
 import DrawingLine from "./drawShapeTool/line.js";
+import DrawingRectangle from "./drawShapeTool/rectangle.js";
 
 var canvas, ctx, flag = false,
 prevX = 0,
@@ -15,6 +16,7 @@ var width;
 var height;
 var line;
 var circle;
+var rectangle;
 
     function paintColor(colorButton) {
         color = colorButton.id;
@@ -42,10 +44,14 @@ var circle;
         connectColorButtonToListener();
         line = new DrawingLine(canvas, ctx);
         circle = new DrawingCircle(canvas, ctx);
+        rectangle = new DrawingRectangle(canvas, ctx);
         const lineButton = document.getElementById("line");
         const circleButton = document.getElementById("circle");
+        const rectangleButton = document.getElementById("rectangle");
         lineButton.addEventListener("click", () => line.init());
         circleButton.addEventListener("click", () => circle.init());
+        rectangleButton.addEventListener("click", () => rectangle.init());
+
     }
     
        

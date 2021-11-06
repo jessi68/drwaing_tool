@@ -8,12 +8,7 @@ export default class DrawingCircle extends DrawingShape{
         ctx.beginPath();
 
         if(this.lineCreated) {
-       
-      
-        // clearLineRounded(this.context, this.prevX, this.prevY, this.curX, this.curY);
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        //clearLineSquared(this.context, this.startX, this.startY, this.curX, this.curY);
-        document.getElementById("canvasimg").style.display = "none";
+           this.eraseAll();
         }
 
         const xDiff = this.curX - this.startX;
