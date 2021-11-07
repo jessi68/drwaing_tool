@@ -1,7 +1,9 @@
 import { SHAPE } from "./consts/shape.js";
 import DrawingCircle from "./drawShapeTool/circle.js";
+import DrawingCurve from "./drawShapeTool/curve.js";
 import DrawingLine from "./drawShapeTool/line.js";
 import DrawingRectangle from "./drawShapeTool/rectangle.js";
+import DrawingShape from "./drawShapeTool/shape.js";
 
 var canvas, ctx, flag = false,
 prevX = 0,
@@ -14,9 +16,11 @@ var color = "black";
 var lineWidth = 2;
 var width;
 var height;
+
 var line;
 var circle;
 var rectangle;
+var curve;
 
     function paintColor(colorButton) {
         color = colorButton.id;
@@ -45,12 +49,17 @@ var rectangle;
         line = new DrawingLine(canvas, ctx);
         circle = new DrawingCircle(canvas, ctx);
         rectangle = new DrawingRectangle(canvas, ctx);
+        curve = new DrawingCurve(canvas, ctx);
+
         const lineButton = document.getElementById("line");
         const circleButton = document.getElementById("circle");
         const rectangleButton = document.getElementById("rectangle");
+        const curveButton = document.getElementById("curve");
+
         lineButton.addEventListener("click", () => line.init());
         circleButton.addEventListener("click", () => circle.init());
         rectangleButton.addEventListener("click", () => rectangle.init());
+        curveButton.addEventListener("click", () => curve.init());
 
     }
     

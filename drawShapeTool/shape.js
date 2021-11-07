@@ -49,7 +49,7 @@ export default class DrawingShape {
        this.history.push({'curX': this.curX, 'curY': this.curY, 'startX': this.startX, 'startY': this.startY});
     }
 
-     init() {
+    init() {
         const canvas = this.canvas;
         canvas.addEventListener("mousemove", function (e) {
             this.mouseMove(e);
