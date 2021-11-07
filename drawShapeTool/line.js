@@ -4,7 +4,7 @@ import DrawingShape from "./shape.js";
 export default class DrawingLine extends DrawingShape {
  
    
-     draw() {
+     drawSpecificShape() {
         const ctx = this.context;
         ctx.beginPath();
         if(this.lineCreated) {

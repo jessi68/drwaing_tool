@@ -23,9 +23,9 @@ var rectangle;
 var curve;
 
     function paintColor(colorButton) {
-        color = colorButton.id;
-        if (color == "white") lineWidth = 14;
-        else lineWidth = 2;
+        DrawingShape.color = colorButton.id;
+        if (color == "white") DrawingShape.lineWidth = 14;
+        else DrawingShape.lineWidth = 2;
     }
     
     function connectColorButtonToListener() {

@@ -18,7 +18,8 @@ export default class DrawingCurve extends DrawingShape {
         this.mouseY = e.pageY;
     }
 
-    draw() {
+    // 탬플릿 메소드 패턴 적용!!
+    drawSpecificShape() {
         const ctx = this.context;
         ctx.beginPath();
 
@@ -40,16 +41,12 @@ export default class DrawingCurve extends DrawingShape {
         } else if(!this.isCurveCreated) {
             this.eraseAll();
             ctx.moveTo(this.startX, this.startY);
-            console.log("lll");
             ctx.quadraticCurveTo(centerX / 2, centerY / 2, this.curX, this.curY);
-            // ctx.bezierCurveTo(, , , , this.curX, this.curY);
         }
        
         // ctx.arc(centerX, centerY, dist / 2, 0, 2 * Math.PI)
         // ctx.strokeStyle = color;
         // ctx.lineWidth = lineWidth;
-        ctx.stroke();
-        ctx.closePath();
     }
 
     stop(e) {

@@ -1,5 +1,9 @@
+
 export default class DrawingShape {
  
+    static color = "black";
+    static lineWidth = 2;
+
     constructor(canvas, context) {
         this.isMoving = false;
         this.lineCreated = false;
@@ -9,7 +13,7 @@ export default class DrawingShape {
         this.curX = 0;
         this.curY = 0;
         this.context = context;
-        this.color = "black"
+
         this.history = [];
     }
 
@@ -18,10 +22,27 @@ export default class DrawingShape {
         document.getElementById("canvasimg").style.display = "none";
     }
 
-     draw() {
-        
+    draw() {
+        this.drawSpecificShape();
+        this.configStyle();
+        this.finishDrawing();
+
     }
 
+    drawSpecificShape() {
+
+    }
+
+    finishDrawing() {
+        this.context.stroke();
+        this.context.closePath();
+    }
+
+    configStyle() {
+        this.context.strokeStyle = DrawingShape.color;
+        this.context.lineWidth = DrawingShape.lineWidth;
+
+    }
     mouseMove(e) {
         if(this.isMoving &&  !this.lineCreated)  {
             this.startX = this.curX;

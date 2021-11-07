@@ -3,7 +3,7 @@ import DrawingShape from "./shape.js";
 export default class DrawingCircle extends DrawingShape{
  
    
-     draw() {
+     drawSpecificShape() {
         const ctx = this.context;
         ctx.beginPath();
 
@@ -18,10 +18,7 @@ export default class DrawingCircle extends DrawingShape{
         const centerY = (this.curY + this.startY) / 2; 
         //ctx.moveTo(this.startX, this.startY);
         ctx.arc(centerX, centerY, dist / 2, 0, 2 * Math.PI)
-        // ctx.strokeStyle = color;
-        // ctx.lineWidth = lineWidth;
-        ctx.stroke();
-        ctx.closePath();
+
     }
 
    

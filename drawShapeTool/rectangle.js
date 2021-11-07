@@ -3,7 +3,7 @@ import DrawingShape from "./shape.js";
 export default class DrawingRectangle extends DrawingShape{
  
    
-     draw() {
+     drawSpecificShape() {
         const ctx = this.context;
         ctx.beginPath();
 
@@ -31,8 +31,7 @@ export default class DrawingRectangle extends DrawingShape{
         
         // ctx.strokeStyle = color;
         // ctx.lineWidth = lineWidth;
-        ctx.stroke();
-        ctx.closePath();
+
     }
 
    
