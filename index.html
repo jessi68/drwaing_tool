@@ -1,6 +1,67 @@
 <html>
+    <script>
+        function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+    </script>
+    <style>
+        .dropbtn {
+          background-color: #3498DB;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .dropbtn:hover, .dropbtn:focus {
+          background-color: #2980B9;
+        }
+        
+        .dropdown {
+          position: relative;
+          display: inline-block;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown a:hover {background-color: #ddd;}
+        
+        .show {display: block;}
+        </style>
     <body>
-        <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        <canvas id="can" width="400" height="400" style="position:absolute;top:20%;left:10%;border:2px solid;"></canvas>
         <div style="position:absolute;top:12%;left:43%;">색깔 고르기 </div>
         <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" class="color"></div>
         <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" class="color"></div>
@@ -16,13 +77,21 @@
             <button id="curve">곡선</button>
             <button id="polygon">다각형</button>
         </div>
-        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">선 선택</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#" id="line1"><hr style="width: 20px; border: solid 1px"></a>
+                <a href="#" id="line2"><hr style="width: 20px; border:solid 2px;"></a>
+                <a href="#"id="line5"><hr style="width: 20px; border:solid 5px;"></a>
+                <a href="#"id="line8"><hr style="width: 20px; border:solid 8px;"></a>
+            </div>
+        </div>
+        <div style="position:absolute;top:25%;left:50%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
         <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
         <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
         <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
     </body>
     <script type="module" src="index.js"></script>
-    <!-- <script>
-        init()
-    </script> -->
+    
+   
     </html>

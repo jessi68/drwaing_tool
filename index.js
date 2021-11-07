@@ -61,6 +61,27 @@ var curve;
         rectangleButton.addEventListener("click", () => rectangle.init());
         curveButton.addEventListener("click", () => curve.init());
 
+        const dropdownParent = document.getElementById("myDropdown");
+
+        const lineWeightButtons = dropdownParent.children;
+
+        for(let i = 0; i < lineWeightButtons.length; i++) {
+            const lineWeightButton = lineWeightButtons[i];
+            console.log(lineWeightButton)
+            console.log(lineWeightButton.id);
+            
+            lineWeightButton.addEventListener("click", (event) => {
+                console.log("clicked");
+                const lineWeightButton = event.target;
+                console.log(lineWeightButton)
+                console.log(lineWeightButton.id.toString());
+                const lineWeight = parseInt(lineWeightButton.id.toString().substr(4, 1));
+                console.log(lineWeight)
+                DrawingShape.lineWidth = lineWeight;
+            })
+            
+        }
+
     }
     
        
